@@ -1,0 +1,100 @@
+create database BidvestBank;
+use BidvestBank;
+CREATE TABLE BankBranch(branch_name varchar(20) NOT NULL,branch_city varchar(50), assets double ,PRIMARY KEY (branch_name));
+CREATE TABLE customer(customer_name varchar(50), customer_street varchar(50),customer_city varchar(50));
+CREATE TABLE CustomerAccount(account_number char(10) NOT NULL,branch_name varchar(20),balance double, PRIMARY KEY(account_number));
+CREATE TABLE loan(loan_number char(10) NOT NULL, branch_name varchar(50), amount double, PRIMARY KEY(loan_number));
+CREATE TABLE Depositor(customer_name varchar(50),account_number char(10) NOT NULL, PRIMARY KEY(account_number));
+CREATE TABLE Borrower(customer_name varchar(50),loan_number char(10) NOT NULL, PRIMARY KEY(loan_number));
+CREATE TABLE Employee(employee_name varchar(50) NOT NULL,branch_name varchar(50),salary double, PRIMARY KEY(employee_name));
+
+INSERT INTO CustomerAccount VALUES('A-5324','Newtown',500);
+INSERT INTO CustomerAccount VALUES('A-5624','Sunnyside',400);
+INSERT INTO CustomerAccount VALUES('A-7794','Midrand',900);
+INSERT INTO CustomerAccount VALUES('A-4467','Mabopane',700);
+INSERT INTO CustomerAccount VALUES('A-3546','Midrand',750);
+INSERT INTO CustomerAccount VALUES('A-3453','Universitas',700);
+INSERT INTO CustomerAccount VALUES('A-2542','Mamelodi',350);
+
+INSERT INTO BankBranch VALUES('Midrand','Johannesburg',7100000);
+INSERT INTO BankBranch VALUES('Newtown','Johannesburg',9000000);
+INSERT INTO BankBranch VALUES('Mabopane','Pretoria',400000);
+INSERT INTO BankBranch VALUES('Belgravia','Kimberly',3700000);
+INSERT INTO BankBranch VALUES('Sunnyside','Pretoria',1700000);
+INSERT INTO BankBranch VALUES('Amanzimtoti','Durban',300000);
+INSERT INTO BankBranch VALUES('Unversitas','Bloemfontein',2100000);
+INSERT INTO BankBranch VALUES('Mamelodi','Pretoria',8000000);
+
+INSERT INTO customer VALUES('Modise','Spring','George');
+INSERT INTO customer VALUES('Brooks','Senator','Johannesburg');
+INSERT INTO customer VALUES('Jooste','North','Kimberly');
+INSERT INTO customer VALUES('Lombard','Sand Hill','Nelspruit');
+INSERT INTO customer VALUES('Mokwena','Walnut','Port-Elizabeth');
+INSERT INTO customer VALUES('Johnson','Mmabatho','Mafikeng');
+INSERT INTO customer VALUES('Johnson','Alma','Bloemfontein');
+INSERT INTO customer VALUES('Zwane','Main','Mafikeng');
+INSERT INTO customer VALUES('Lindsay','Park','George');
+INSERT INTO customer VALUES('Smith','North','Kimberly');
+INSERT INTO customer VALUES('Dlmaini','Putnam','Port-Elizabeth');
+INSERT INTO customer VALUES('Williams','Nassau','Giyane');
+
+INSERT INTO Depositor VALUES('Johnson','A-5624');
+INSERT INTO Depositor VALUES('Johnson','A-5624');
+INSERT INTO Depositor VALUES('Zwane','A-3546');
+INSERT INTO Depositor VALUES('Lindsay','A-3453');
+INSERT INTO Depositor VALUES('Smith','A-4467');
+INSERT INTO Depositor VALUES('Dlamini','A-2542');
+
+INSERT INTO Loan VALUES('L-11','Mamelodi',900);
+INSERT INTO Loan VALUES('L-14','Newtown',1500);
+INSERT INTO Loan VALUES('L-15','Sunnyside',1500);
+INSERT INTO Loan VALUES('L-16','Sunnyside',1300);
+INSERT INTO Loan VALUES('L-17','Newtown',1000);
+INSERT INTO Loan VALUES('L-23','Univeritas',2000);
+INSERT INTO Loan VALUES('L-93','Mabopane',500);
+
+INSERT INTO Borrower VALUES('Modise','L-16');
+INSERT INTO Borrower VALUES('Jooste','L-93');
+INSERT INTO Borrower VALUES('Johnson','L-15');
+INSERT INTO Borrower VALUES('Jackson','L-14');
+INSERT INTO Borrower VALUES('Zwane','L-17');
+INSERT INTO Borrower VALUES('Smith','L-11');
+INSERT INTO Borrower VALUES('Smith','L-23');
+
+INSERT INTO Employee VALUES('Modise','Sunnyside',1500);
+INSERT INTO Employee VALUES('Brown','Sunnyside',1300);
+INSERT INTO Employee VALUES('Gopal','Sunnyside',5300);
+INSERT INTO Employee VALUES('Johnson','Newtown',1500);
+INSERT INTO Employee VALUES('Loreena','Newtown',1300);
+INSERT INTO Employee VALUES('Peterson','Newtown',2500);
+INSERT INTO Employee VALUES('Rao','Austin',1500);
+INSERT INTO Employee VALUES('Sato','Austin',1600);
+
+mysql> SELECT * FROM CustomerAccount WHERE balance < 700;
+
+
+SELECT * FROM customer WHERE customer_city = 'Johannesburg';
+
+
+SELECT * FROM Employee WHERE salary >1500;
+
+
+SELECT AVG(salary) from Employee;
+
+
+SELECT MAX(assets) AS LargestAsset FROM BankBranch;
+
+mysql> SELECT AVG(salary) AS avg_salary from Employee;
+
+
+SELECT employee_name FROM Employee WHERE branch_name = 'Sunnyside';
+
+
+SELECT * FROM Borrower;
+
+
+Select account_number,balance FROM CustomerAccount WHERE balance > 600;
+
+
+SELECT branch_name,assets FROM BankBranch;
+
